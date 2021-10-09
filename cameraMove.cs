@@ -12,6 +12,10 @@ public class cameraMove : MonoBehaviour
 
     void Start()
     {
+         if (playerBody == null)
+        {
+            playerBody = transform.parent;
+        }
         Cursor.lockState = CursorLockMode.Locked;
     }
 
