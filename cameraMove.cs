@@ -6,16 +6,16 @@ public class cameraMove : MonoBehaviour
 {
     public float mouseSensitivity = 100f;
 
-    public Transform pBodyOrOrientation;
+    public Transform playerBody;
     public float eulerAngle;
     public bool isLocked = false;
     private float xRotattion = 0f;
 
     void Start()
     {
-        if (pBodyOrOrientation == null)
+        if (playerBody == null)
         {
-            pBodyOrOrientation = transform.parent;
+            playerBody = transform.parent;
         }
         if (isLocked)
         {
@@ -33,7 +33,7 @@ public class cameraMove : MonoBehaviour
         xRotattion = Mathf.Clamp(xRotattion, -90f, 90f);
 
         transform.localRotation = Quaternion.Euler(xRotattion, 0f, eulerAngle);
-        pBodyOrOrientation.Rotate(Vector3.up * mouseX);
+        playerBody.Rotate(Vector3.up * mouseX);
 
         if (isLocked)
         {
@@ -43,11 +43,5 @@ public class cameraMove : MonoBehaviour
         {
             Cursor.lockState = CursorLockMode.None;
         }
-        fixPosition();
-    }
-
-    void fixPosition()
-    {
-        transform.position = pBodyOrOrientation.transform.position;
     }
 }
